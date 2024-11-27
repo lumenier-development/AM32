@@ -1,0 +1,57 @@
+{
+	"folders": [
+		{
+			"path": ".."
+		},
+		{
+			"name": "Keil_Projects",
+			"path": "../Keil_Projects"
+		}
+	],
+	"settings": {
+		"clangd.arguments": [
+			"--compile-commands-dir=/home/djmorvay/Documents/Code/AM32/Keil_Projects/out/Am32G071/GEN64KG071"
+		],
+		"cmsis-csolution.actions": [
+			{
+				"path": "Keil_Projects/Am32G071.csolution.yml",
+				"target": "DT12064KG071",
+				"config": {
+					"run": "cmsis-csolution.build: Build",
+					"debug": "AM32 STLink"
+				},
+				"projects": [
+					{
+						"path": "Keil_Projects/Am32G071.cproject.yml",
+						"config": {
+							"run": "cmsis-csolution.build: Build",
+							"debug": "AM32 STLink"
+						}
+					}
+				]
+			},
+			{
+				"path": "Keil_Projects/Am32G071.csolution.yml",
+				"target": "GEN64KG071",
+				"projects": [
+					{
+						"path": "Keil_Projects/Am32G071.cproject.yml",
+						"config": {
+							"run": "cmsis-csolution.build: Build"
+						}
+					}
+				],
+				"config": {
+					"run": "cmsis-csolution.build: Build"
+				}
+			}
+		],
+		"makefile.launchConfigurations": [
+			{
+				"cwd": "/home/djmorvay/Documents/Code/AM32/obj",
+				"binaryPath": "/home/djmorvay/Documents/Code/AM32/obj/AM32_AGFRC_V2_F051_2.16.elf",
+				"binaryArgs": []
+			}
+		]
+	}
+}

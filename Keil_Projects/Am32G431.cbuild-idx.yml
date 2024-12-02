@@ -1,0 +1,10 @@
+build-idx:
+  generated-by: csolution version 2.5.0
+  csolution: Am32G431.csolution.yml
+  tmpdir: tmp
+  cprojects:
+    - cproject: Am32G431.cproject.yml
+  cbuilds:
+    - cbuild: Am32G431+G431test.cbuild.yml
+      project: Am32G431
+      configuration: +G431test

@@ -1,0 +1,6 @@
+/home/djmorvay/Documents/Code/AM32/build/CMakeFiles/Am32G431+G431test.dir
+/home/djmorvay/Documents/Code/AM32/build/CMakeFiles/Am32G431+G431test-build.dir
+/home/djmorvay/Documents/Code/AM32/build/CMakeFiles/Am32G431+G431test-configure.dir
+/home/djmorvay/Documents/Code/AM32/build/CMakeFiles/Am32G431+G431test-database.dir
+/home/djmorvay/Documents/Code/AM32/build/CMakeFiles/edit_cache.dir
+/home/djmorvay/Documents/Code/AM32/build/CMakeFiles/rebuild_cache.dir

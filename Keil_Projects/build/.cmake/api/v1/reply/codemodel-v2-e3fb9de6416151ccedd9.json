@@ -1,0 +1,87 @@
+{
+	"configurations" : 
+	[
+		{
+			"directories" : 
+			[
+				{
+					"build" : ".",
+					"jsonFile" : "directory-.-Debug-f5ebdc15457944623624.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.22"
+					},
+					"projectIndex" : 0,
+					"source" : ".",
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2,
+						3
+					]
+				}
+			],
+			"name" : "Debug",
+			"projects" : 
+			[
+				{
+					"directoryIndexes" : 
+					[
+						0
+					],
+					"name" : "Am32G431",
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2,
+						3
+					]
+				}
+			],
+			"targets" : 
+			[
+				{
+					"directoryIndex" : 0,
+					"id" : "Am32G431+G431test::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-Am32G431+G431test-Debug-878d6b6279a468ebabb3.json",
+					"name" : "Am32G431+G431test",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "Am32G431+G431test-build::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-Am32G431+G431test-build-Debug-254dc5f834652c2fa089.json",
+					"name" : "Am32G431+G431test-build",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "Am32G431+G431test-configure::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-Am32G431+G431test-configure-Debug-bc41810077335ae384d9.json",
+					"name" : "Am32G431+G431test-configure",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "Am32G431+G431test-database::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-Am32G431+G431test-database-Debug-51d9945a014d1c6ed4c7.json",
+					"name" : "Am32G431+G431test-database",
+					"projectIndex" : 0
+				}
+			]
+		}
+	],
+	"kind" : "codemodel",
+	"paths" : 
+	{
+		"build" : "/home/djmorvay/Documents/Code/AM32/Keil_Projects/build",
+		"source" : "/home/djmorvay/Documents/Code/AM32/Keil_Projects/tmp"
+	},
+	"version" : 
+	{
+		"major" : 2,
+		"minor" : 6
+	}
+}

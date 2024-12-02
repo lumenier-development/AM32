@@ -1,0 +1,14 @@
+# Target labels
+ Am32G431+G431test
+# Source files and their labels
+/home/djmorvay/Documents/Code/AM32/Keil_Projects/tmp/CMakeFiles/Am32G431+G431test
+/home/djmorvay/Documents/Code/AM32/Keil_Projects/tmp/CMakeFiles/Am32G431+G431test.rule
+/home/djmorvay/Documents/Code/AM32/Keil_Projects/tmp/CMakeFiles/Am32G431+G431test-complete.rule
+/home/djmorvay/Documents/Code/AM32/Keil_Projects/tmp/Am32G431+G431test/src/Am32G431+G431test-stamp/Am32G431+G431test-build.rule
+/home/djmorvay/Documents/Code/AM32/Keil_Projects/tmp/Am32G431+G431test/src/Am32G431+G431test-stamp/Am32G431+G431test-configure.rule
+/home/djmorvay/Documents/Code/AM32/Keil_Projects/tmp/Am32G431+G431test/src/Am32G431+G431test-stamp/Am32G431+G431test-download.rule
+/home/djmorvay/Documents/Code/AM32/Keil_Projects/tmp/Am32G431+G431test/src/Am32G431+G431test-stamp/Am32G431+G431test-install.rule
+/home/djmorvay/Documents/Code/AM32/Keil_Projects/tmp/Am32G431+G431test/src/Am32G431+G431test-stamp/Am32G431+G431test-mkdir.rule
+/home/djmorvay/Documents/Code/AM32/Keil_Projects/tmp/Am32G431+G431test/src/Am32G431+G431test-stamp/Am32G431+G431test-patch.rule
+/home/djmorvay/Documents/Code/AM32/Keil_Projects/tmp/Am32G431+G431test/src/Am32G431+G431test-stamp/Am32G431+G431test-test.rule
+/home/djmorvay/Documents/Code/AM32/Keil_Projects/tmp/Am32G431+G431test/src/Am32G431+G431test-stamp/Am32G431+G431test-update.rule

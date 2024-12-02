@@ -1,0 +1,1 @@
+cmd='/usr/bin/cmake;-G;Ninja;-S;<SOURCE_DIR>;-B;<BINARY_DIR>;-DSOLUTION_ROOT=/home/djmorvay/Documents/Code/AM32/Keil_Projects;-DCMSIS_PACK_ROOT=/home/djmorvay/.cache/arm/packs;-DCMSIS_COMPILER_ROOT=/home/djmorvay/cmsis-toolbox-linux-amd64/etc'

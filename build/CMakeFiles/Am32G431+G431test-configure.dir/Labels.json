@@ -1,0 +1,34 @@
+{
+	"sources" : 
+	[
+		{
+			"file" : "/home/djmorvay/Documents/Code/AM32/build/CMakeFiles/Am32G431+G431test-configure"
+		},
+		{
+			"file" : "/home/djmorvay/Documents/Code/AM32/build/CMakeFiles/Am32G431+G431test-configure.rule"
+		},
+		{
+			"file" : "/home/djmorvay/Documents/Code/AM32/Keil_Projects/tmp/Am32G431+G431test/src/Am32G431+G431test-stamp/Am32G431+G431test-configure.rule"
+		},
+		{
+			"file" : "/home/djmorvay/Documents/Code/AM32/Keil_Projects/tmp/Am32G431+G431test/src/Am32G431+G431test-stamp/Am32G431+G431test-patch.rule"
+		},
+		{
+			"file" : "/home/djmorvay/Documents/Code/AM32/Keil_Projects/tmp/Am32G431+G431test/src/Am32G431+G431test-stamp/Am32G431+G431test-update.rule"
+		},
+		{
+			"file" : "/home/djmorvay/Documents/Code/AM32/Keil_Projects/tmp/Am32G431+G431test/src/Am32G431+G431test-stamp/Am32G431+G431test-download.rule"
+		},
+		{
+			"file" : "/home/djmorvay/Documents/Code/AM32/Keil_Projects/tmp/Am32G431+G431test/src/Am32G431+G431test-stamp/Am32G431+G431test-mkdir.rule"
+		}
+	],
+	"target" : 
+	{
+		"labels" : 
+		[
+			"Am32G431+G431test"
+		],
+		"name" : "Am32G431+G431test-configure"
+	}
+}

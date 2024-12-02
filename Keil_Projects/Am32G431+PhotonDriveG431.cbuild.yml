@@ -1,0 +1,244 @@
+build:
+  generated-by: csolution version 2.5.0
+  solution: Am32G431.csolution.yml
+  project: Am32G431.cproject.yml
+  context: Am32G431+PhotonDriveG431
+  compiler: AC6@6.23.0
+  device: STMicroelectronics::STM32G431KBUx
+  device-pack: Keil::STM32G4xx_DFP@1.6.0
+  processor:
+    endian: little
+    fpu: sp
+    core: Cortex-M4
+  packs:
+    - pack: ARM::CMSIS@5.9.0
+      path: ${CMSIS_PACK_ROOT}/ARM/CMSIS/5.9.0
+    - pack: Keil::STM32G4xx_DFP@1.6.0
+      path: ${CMSIS_PACK_ROOT}/Keil/STM32G4xx_DFP/1.6.0
+  optimize: debug
+  debug: on
+  misc:
+    ASM:
+      - -masm=auto
+    C:
+      - -std=c99
+      - -fno-rtti
+      - -funsigned-char
+      - -fshort-enums
+      - -fshort-wchar
+      - -ffunction-sections
+      - -Wno-packed
+      - -Wno-missing-variable-declarations
+      - -Wno-missing-prototypes
+      - -Wno-missing-noreturn
+      - -Wno-sign-conversion
+      - -Wno-nonportable-include-path
+      - -Wno-reserved-id-macro
+      - -Wno-unused-macros
+      - -Wno-documentation-unknown-command
+      - -Wno-documentation
+      - -Wno-license-management
+      - -Wno-parentheses-equality
+    CPP:
+      - -xc++
+      - -std=c++03
+      - -fno-rtti
+      - -funsigned-char
+      - -fshort-enums
+      - -fshort-wchar
+      - -ffunction-sections
+      - -Wno-packed
+      - -Wno-missing-variable-declarations
+      - -Wno-missing-prototypes
+      - -Wno-missing-noreturn
+      - -Wno-sign-conversion
+      - -Wno-nonportable-include-path
+      - -Wno-reserved-id-macro
+      - -Wno-unused-macros
+      - -Wno-documentation-unknown-command
+      - -Wno-documentation
+      - -Wno-license-management
+      - -Wno-parentheses-equality
+    Link:
+      - --map
+      - --load_addr_map_info
+      - --xref
+      - --callgraph
+      - --symbols
+      - --info sizes
+      - --info totals
+      - --info unused
+      - --info veneers
+      - --strict
+      - --summary_stderr
+      - --info summarysizes
+  define:
+    - PROTONDRIVE_G431
+    - USE_FULL_LL_DRIVER
+    - HSE_VALUE: 8000000
+    - HSE_STARTUP_TIMEOUT: 100
+    - LSE_STARTUP_TIMEOUT: 5000
+    - LSE_VALUE: 32768
+    - EXTERNAL_CLOCK_VALUE: 12288000
+    - HSI_VALUE: 16000000
+    - LSI_VALUE: 32000
+    - VDD_VALUE: 3300
+    - PREFETCH_ENABLE: 0
+    - INSTRUCTION_CACHE_ENABLE: 1
+    - DATA_CACHE_ENABLE: 1
+    - STM32G431xx
+    - STM32G431xx
+    - _RTE_
+  define-asm:
+    - STM32G431xx
+    - _RTE_
+  add-path:
+    - ../Mcu/g431/Drivers/STM32G4xx_HAL_Driver/Inc
+    - ../Mcu/g431/Drivers/CMSIS/Device/ST/STM32G4xx/Include
+    - ../Inc
+    - ../Mcu/g431/Inc
+    - RTE/_PhotonDriveG431
+    - ${CMSIS_PACK_ROOT}/ARM/CMSIS/5.9.0/CMSIS/Core/Include
+    - ${CMSIS_PACK_ROOT}/Keil/STM32G4xx_DFP/1.6.0/Drivers/CMSIS/Device/ST/STM32G4xx/Include
+  add-path-asm:
+    - RTE/_PhotonDriveG431
+    - ${CMSIS_PACK_ROOT}/ARM/CMSIS/5.9.0/CMSIS/Core/Include
+    - ${CMSIS_PACK_ROOT}/Keil/STM32G4xx_DFP/1.6.0/Drivers/CMSIS/Device/ST/STM32G4xx/Include
+  output-dirs:
+    intdir: tmp
+    outdir: out/Am32G431/PhotonDriveG431
+    rtedir: RTE
+  output:
+    - type: elf
+      file: Am32G431.axf
+  components:
+    - component: ARM::CMSIS:CORE@5.6.0
+      condition: ARMv6_7_8-M Device
+      from-pack: ARM::CMSIS@5.9.0
+      selected-by: ARM::CMSIS:CORE
+      files:
+        - file: ${CMSIS_PACK_ROOT}/ARM/CMSIS/5.9.0/CMSIS/Core/Include
+          category: include
+          version: 5.6.0
+        - file: ${CMSIS_PACK_ROOT}/ARM/CMSIS/5.9.0/CMSIS/Core/Include/tz_context.h
+          category: header
+          version: 5.6.0
+        - file: ${CMSIS_PACK_ROOT}/ARM/CMSIS/5.9.0/CMSIS/Core/Template/ARMv8-M/main_s.c
+          category: sourceC
+          attr: template
+          version: 1.1.1
+          select: Secure mode 'main' module for ARMv8-M
+        - file: ${CMSIS_PACK_ROOT}/ARM/CMSIS/5.9.0/CMSIS/Core/Template/ARMv8-M/tz_context.c
+          category: sourceC
+          attr: template
+          version: 1.1.1
+          select: RTOS Context Management (TrustZone for ARMv8-M)
+        - file: ${CMSIS_PACK_ROOT}/ARM/CMSIS/5.9.0/CMSIS/Documentation/Core/html/index.html
+          category: doc
+          version: 5.6.0
+  linker:
+    script: ../Mcu/g431/Am32_64kb_g431.sct
+  groups:
+    - group: startup
+      files:
+        - file: ../Mcu/g431/Startup/startup_stm32g431xx.s
+          category: sourceAsm
+    - group: Drivers
+      files:
+        - file: ../Mcu/g431/Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_ll_adc.c
+          category: sourceC
+        - file: ../Mcu/g431/Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_ll_comp.c
+          category: sourceC
+        - file: ../Mcu/g431/Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_ll_cordic.c
+          category: sourceC
+        - file: ../Mcu/g431/Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_ll_crc.c
+          category: sourceC
+        - file: ../Mcu/g431/Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_ll_crs.c
+          category: sourceC
+        - file: ../Mcu/g431/Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_ll_dac.c
+          category: sourceC
+        - file: ../Mcu/g431/Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_ll_dma.c
+          category: sourceC
+        - file: ../Mcu/g431/Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_ll_exti.c
+          category: sourceC
+        - file: ../Mcu/g431/Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_ll_fmac.c
+          category: sourceC
+        - file: ../Mcu/g431/Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_ll_gpio.c
+          category: sourceC
+        - file: ../Mcu/g431/Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_ll_hrtim.c
+          category: sourceC
+        - file: ../Mcu/g431/Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_ll_i2c.c
+          category: sourceC
+        - file: ../Mcu/g431/Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_ll_lptim.c
+          category: sourceC
+        - file: ../Mcu/g431/Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_ll_lpuart.c
+          category: sourceC
+        - file: ../Mcu/g431/Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_ll_opamp.c
+          category: sourceC
+        - file: ../Mcu/g431/Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_ll_pwr.c
+          category: sourceC
+        - file: ../Mcu/g431/Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_ll_rcc.c
+          category: sourceC
+        - file: ../Mcu/g431/Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_ll_rng.c
+          category: sourceC
+        - file: ../Mcu/g431/Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_ll_rtc.c
+          category: sourceC
+        - file: ../Mcu/g431/Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_ll_spi.c
+          category: sourceC
+        - file: ../Mcu/g431/Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_ll_tim.c
+          category: sourceC
+        - file: ../Mcu/g431/Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_ll_ucpd.c
+          category: sourceC
+        - file: ../Mcu/g431/Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_ll_usart.c
+          category: sourceC
+        - file: ../Mcu/g431/Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_ll_utils.c
+          category: sourceC
+    - group: Src
+      files:
+        - file: ../Src/dshot.c
+          category: sourceC
+        - file: ../Src/firmwareversion.c
+          category: sourceC
+        - file: ../Src/functions.c
+          category: sourceC
+        - file: ../Src/main.c
+          category: sourceC
+        - file: ../Src/signal.c
+          category: sourceC
+        - file: ../Src/sounds.c
+          category: sourceC
+    - group: Mcu
+      files:
+        - file: ../Mcu/g431/Src/ADC.c
+          category: sourceC
+        - file: ../Mcu/g431/Src/comparator.c
+          category: sourceC
+        - file: ../Mcu/g431/Src/eeprom.c
+          category: sourceC
+        - file: ../Mcu/g431/Src/IO.c
+          category: sourceC
+        - file: ../Mcu/g431/Src/peripherals.c
+          category: sourceC
+        - file: ../Mcu/g431/Src/phaseouts.c
+          category: sourceC
+        - file: ../Mcu/g431/Src/serial_telemetry.c
+          category: sourceC
+        - file: ../Mcu/g431/Src/stm32g4xx_it.c
+          category: sourceC
+        - file: ../Mcu/g431/Src/system_stm32g4xx.c
+          category: sourceC
+        - file: ../Mcu/g431/Src/WS2812.c
+          category: sourceC
+  constructed-files:
+    - file: RTE/_PhotonDriveG431/RTE_Components.h
+      category: header
+  licenses:
+    - license: <unknown>
+      packs:
+        - pack: ARM::CMSIS@5.9.0
+      components:
+        - component: ARM::CMSIS:CORE@5.6.0
+    - license: <unknown>
+      license-agreement: ${CMSIS_PACK_ROOT}/Keil/STM32G4xx_DFP/1.6.0/LICENSE
+      packs:
+        - pack: Keil::STM32G4xx_DFP@1.6.0

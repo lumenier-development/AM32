@@ -1,0 +1,187 @@
+project:
+  packs:
+    - pack: Keil::STM32G4xx_DFP
+    - pack: ARM::CMSIS@5.9.0
+  setups:
+    - setup: Options for G431test
+      for-context: +G431test
+      processor:
+        fpu: sp
+      add-path:
+        - ../Mcu/g431/Drivers/STM32G4xx_HAL_Driver/Inc
+        - ../Mcu/g431/Drivers/CMSIS/Device/ST/STM32G4xx/Include
+        - ../Inc
+        - ../Mcu/g431/Inc
+      debug: "on"
+      define:
+        - REF_G431
+        - USE_FULL_LL_DRIVER
+        - HSE_VALUE: "8000000"
+        - HSE_STARTUP_TIMEOUT: "100"
+        - LSE_STARTUP_TIMEOUT: "5000"
+        - LSE_VALUE: "32768"
+        - EXTERNAL_CLOCK_VALUE: "12288000"
+        - HSI_VALUE: "16000000"
+        - LSI_VALUE: "32000"
+        - VDD_VALUE: "3300"
+        - PREFETCH_ENABLE: "0"
+        - INSTRUCTION_CACHE_ENABLE: "1"
+        - DATA_CACHE_ENABLE: "1"
+        - STM32G431xx
+      misc:
+        - C:
+            - -std=c99
+          C-CPP:
+            - -fno-rtti
+            - -funsigned-char
+            - -fshort-enums
+            - -fshort-wchar
+            - -ffunction-sections
+            - -Wno-packed
+            - -Wno-missing-variable-declarations
+            - -Wno-missing-prototypes
+            - -Wno-missing-noreturn
+            - -Wno-sign-conversion
+            - -Wno-nonportable-include-path
+            - -Wno-reserved-id-macro
+            - -Wno-unused-macros
+            - -Wno-documentation-unknown-command
+            - -Wno-documentation
+            - -Wno-license-management
+            - -Wno-parentheses-equality
+          CPP:
+            - -xc++
+            - -std=c++03
+          ASM:
+            - -masm=auto
+          Link:
+            - --map
+            - --load_addr_map_info
+            - --xref
+            - --callgraph
+            - --symbols
+            - --info sizes
+            - --info totals
+            - --info unused
+            - --info veneers
+            - --strict
+            - --summary_stderr
+            - --info summarysizes
+    - setup: Options for PhotonDriveG431
+      for-context: +PhotonDriveG431
+      processor:
+        fpu: sp
+      add-path:
+        - ../Mcu/g431/Drivers/STM32G4xx_HAL_Driver/Inc
+        - ../Mcu/g431/Drivers/CMSIS/Device/ST/STM32G4xx/Include
+        - ../Inc
+        - ../Mcu/g431/Inc
+      debug: "on"
+      define:
+        - PROTONDRIVE_G431
+        - USE_FULL_LL_DRIVER
+        - HSE_VALUE: "8000000"
+        - HSE_STARTUP_TIMEOUT: "100"
+        - LSE_STARTUP_TIMEOUT: "5000"
+        - LSE_VALUE: "32768"
+        - EXTERNAL_CLOCK_VALUE: "12288000"
+        - HSI_VALUE: "16000000"
+        - LSI_VALUE: "32000"
+        - VDD_VALUE: "3300"
+        - PREFETCH_ENABLE: "0"
+        - INSTRUCTION_CACHE_ENABLE: "1"
+        - DATA_CACHE_ENABLE: "1"
+        - STM32G431xx
+      misc:
+        - C:
+            - -std=c99
+          C-CPP:
+            - -fno-rtti
+            - -funsigned-char
+            - -fshort-enums
+            - -fshort-wchar
+            - -ffunction-sections
+            - -Wno-packed
+            - -Wno-missing-variable-declarations
+            - -Wno-missing-prototypes
+            - -Wno-missing-noreturn
+            - -Wno-sign-conversion
+            - -Wno-nonportable-include-path
+            - -Wno-reserved-id-macro
+            - -Wno-unused-macros
+            - -Wno-documentation-unknown-command
+            - -Wno-documentation
+            - -Wno-license-management
+            - -Wno-parentheses-equality
+          CPP:
+            - -xc++
+            - -std=c++03
+          ASM:
+            - -masm=auto
+          Link:
+            - --map
+            - --load_addr_map_info
+            - --xref
+            - --callgraph
+            - --symbols
+            - --info sizes
+            - --info totals
+            - --info unused
+            - --info veneers
+            - --strict
+            - --summary_stderr
+            - --info summarysizes
+  linker:
+    - script: ../Mcu/g431/Am32_64kb_g431.sct
+  groups:
+    - group: startup
+      files:
+        - file: ../Mcu/g431/Startup/startup_stm32g431xx.s
+    - group: Drivers
+      files:
+        - file: ../Mcu/g431/Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_ll_adc.c
+        - file: ../Mcu/g431/Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_ll_comp.c
+        - file: ../Mcu/g431/Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_ll_cordic.c
+        - file: ../Mcu/g431/Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_ll_crc.c
+        - file: ../Mcu/g431/Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_ll_crs.c
+        - file: ../Mcu/g431/Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_ll_dac.c
+        - file: ../Mcu/g431/Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_ll_dma.c
+        - file: ../Mcu/g431/Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_ll_exti.c
+        - file: ../Mcu/g431/Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_ll_fmac.c
+        - file: ../Mcu/g431/Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_ll_gpio.c
+        - file: ../Mcu/g431/Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_ll_hrtim.c
+        - file: ../Mcu/g431/Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_ll_i2c.c
+        - file: ../Mcu/g431/Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_ll_lptim.c
+        - file: ../Mcu/g431/Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_ll_lpuart.c
+        - file: ../Mcu/g431/Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_ll_opamp.c
+        - file: ../Mcu/g431/Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_ll_pwr.c
+        - file: ../Mcu/g431/Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_ll_rcc.c
+        - file: ../Mcu/g431/Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_ll_rng.c
+        - file: ../Mcu/g431/Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_ll_rtc.c
+        - file: ../Mcu/g431/Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_ll_spi.c
+        - file: ../Mcu/g431/Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_ll_tim.c
+        - file: ../Mcu/g431/Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_ll_ucpd.c
+        - file: ../Mcu/g431/Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_ll_usart.c
+        - file: ../Mcu/g431/Drivers/STM32G4xx_HAL_Driver/Src/stm32g4xx_ll_utils.c
+    - group: Src
+      files:
+        - file: ../Src/dshot.c
+        - file: ../Src/firmwareversion.c
+        - file: ../Src/functions.c
+        - file: ../Src/main.c
+        - file: ../Src/signal.c
+        - file: ../Src/sounds.c
+    - group: Mcu
+      files:
+        - file: ../Mcu/g431/Src/ADC.c
+        - file: ../Mcu/g431/Src/comparator.c
+        - file: ../Mcu/g431/Src/eeprom.c
+        - file: ../Mcu/g431/Src/IO.c
+        - file: ../Mcu/g431/Src/peripherals.c
+        - file: ../Mcu/g431/Src/phaseouts.c
+        - file: ../Mcu/g431/Src/serial_telemetry.c
+        - file: ../Mcu/g431/Src/stm32g4xx_it.c
+        - file: ../Mcu/g431/Src/system_stm32g4xx.c
+        - file: ../Mcu/g431/Src/WS2812.c
+  components:
+    - component: ARM::CMSIS:CORE

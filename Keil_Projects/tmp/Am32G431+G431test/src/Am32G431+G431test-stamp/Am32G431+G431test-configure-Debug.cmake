@@ -1,7 +1,7 @@
 
 cmake_minimum_required(VERSION 3.15)
 
-set(command "/usr/bin/cmake;-G;Ninja;-S;/home/djmorvay/Documents/Code/AM32/Keil_Projects/tmp/Am32G431+G431test;-B;/home/djmorvay/Documents/Code/AM32/Keil_Projects/build/1;-DSOLUTION_ROOT=/home/djmorvay/Documents/Code/AM32/Keil_Projects;-DCMSIS_PACK_ROOT=/home/djmorvay/.cache/arm/packs;-DCMSIS_COMPILER_ROOT=/home/djmorvay/cmsis-toolbox-linux-amd64/etc")
+set(command "/usr/bin/cmake;-G;Ninja;-S;/home/djmorvay/Documents/Code/AM32/Keil_Projects/tmp/Am32G431+G431test;-B;/home/djmorvay/Documents/Code/AM32/build/1;-DSOLUTION_ROOT=/home/djmorvay/Documents/Code/AM32/Keil_Projects;-DCMSIS_PACK_ROOT=/home/djmorvay/.cache/arm/packs;-DCMSIS_COMPILER_ROOT=/home/djmorvay/cmsis-toolbox-linux-amd64/etc")
 set(log_merged "")
 set(log_output_on_failure "")
 set(stdout_log "/home/djmorvay/Documents/Code/AM32/Keil_Projects/tmp/Am32G431+G431test/src/Am32G431+G431test-stamp/Am32G431+G431test-configure-out.log")
@@ -49,7 +49,7 @@ if(result)
     message(FATAL_ERROR "${msg}")
   endif()
 else()
-  if(NOT "Ninja" MATCHES "Ninja")
+  if(NOT "Unix Makefiles" MATCHES "Ninja")
     set(msg "Am32G431+G431test configure command succeeded.  See also /home/djmorvay/Documents/Code/AM32/Keil_Projects/tmp/Am32G431+G431test/src/Am32G431+G431test-stamp/Am32G431+G431test-configure-*.log")
     message(STATUS "${msg}")
   endif()

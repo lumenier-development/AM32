@@ -22,7 +22,8 @@ CFLAGS_$(MCU) := \
 	-I$(HAL_FOLDER_$(MCU))/Inc \
 	-I$(HAL_FOLDER_$(MCU))/Drivers/STM32G4xx_HAL_Driver/Inc \
 	-I$(HAL_FOLDER_$(MCU))/Drivers/CMSIS/Include \
-	-I$(HAL_FOLDER_$(MCU))/Drivers/CMSIS/Device/ST/STM32G4xx/Include
+	-I$(HAL_FOLDER_$(MCU))/Drivers/CMSIS/Device/ST/STM32G4xx/Include \
+	-g
 
 CFLAGS_$(MCU) += \
 	-DHSE_VALUE=8000000 \

@@ -5,7 +5,7 @@ cmake_minimum_required(VERSION 3.5)
 
 file(MAKE_DIRECTORY
   "/home/djmorvay/Documents/Code/AM32/Keil_Projects/tmp/Am32G431+G431test"
-  "/home/djmorvay/Documents/Code/AM32/Keil_Projects/build/1"
+  "/home/djmorvay/Documents/Code/AM32/build/1"
   "/home/djmorvay/Documents/Code/AM32/Keil_Projects/tmp/Am32G431+G431test"
   "/home/djmorvay/Documents/Code/AM32/Keil_Projects/tmp/Am32G431+G431test/tmp"
   "/home/djmorvay/Documents/Code/AM32/Keil_Projects/tmp/Am32G431+G431test/src/Am32G431+G431test-stamp"

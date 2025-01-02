@@ -15,23 +15,8 @@
 			"path" : "/usr/share/cmake-3.28/Modules/ExternalProject/shared_internal_commands.cmake"
 		},
 		{
-			"isCMake" : true,
-			"isExternal" : true,
-			"path" : "/usr/share/cmake-3.28/Modules/CMakeDetermineSystem.cmake"
-		},
-		{
-			"isCMake" : true,
-			"isExternal" : true,
-			"path" : "/usr/share/cmake-3.28/Modules/CMakeSystem.cmake.in"
-		},
-		{
 			"isGenerated" : true,
 			"path" : "/home/djmorvay/Documents/Code/AM32/Keil_Projects/build/CMakeFiles/3.28.3/CMakeSystem.cmake"
-		},
-		{
-			"isCMake" : true,
-			"isExternal" : true,
-			"path" : "/usr/share/cmake-3.28/Modules/CMakeNinjaFindMake.cmake"
 		},
 		{
 			"isCMake" : true,

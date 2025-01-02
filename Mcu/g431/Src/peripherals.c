@@ -10,6 +10,7 @@
 #include "peripherals.h"
 
 #include "serial_telemetry.h"
+#include "stm32g4xx_ll_gpio.h"
 #include "targets.h"
 
 #ifdef USE_LED_STRIP
@@ -232,9 +233,10 @@ void MX_TIM1_Init(void)
     /* USER CODE BEGIN TIM1_Init 2 */
 
     /* USER CODE END TIM1_Init 2 */
-    LL_AHB2_GRP1_EnableClock(LL_AHB2_GRP1_PERIPH_GPIOF);
     LL_AHB2_GRP1_EnableClock(LL_AHB2_GRP1_PERIPH_GPIOA);
     LL_AHB2_GRP1_EnableClock(LL_AHB2_GRP1_PERIPH_GPIOB);
+    LL_AHB2_GRP1_EnableClock(LL_AHB2_GRP1_PERIPH_GPIOE);
+    LL_AHB2_GRP1_EnableClock(LL_AHB2_GRP1_PERIPH_GPIOF);
     /**TIM1 GPIO Configuration
     PF0-OSC_IN   ------> TIM1_CH3N
     PA7   ------> TIM1_CH1N
@@ -243,53 +245,54 @@ void MX_TIM1_Init(void)
     PA9   ------> TIM1_CH2
     PA10   ------> TIM1_CH3
     */
+    // Phase A - Low
     GPIO_InitStruct.Pin = PHASE_A_GPIO_LOW;
     GPIO_InitStruct.Mode = LL_GPIO_MODE_ALTERNATE;
     GPIO_InitStruct.Speed = LL_GPIO_SPEED_FREQ_LOW;
     GPIO_InitStruct.OutputType = LL_GPIO_OUTPUT_PUSHPULL;
     GPIO_InitStruct.Pull = LL_GPIO_PULL_NO;
-    GPIO_InitStruct.Alternate = LL_GPIO_AF_6;
+    GPIO_InitStruct.Alternate = LL_GPIO_AF_2;
     LL_GPIO_Init(PHASE_A_GPIO_PORT_LOW, &GPIO_InitStruct);
-
-    GPIO_InitStruct.Pin = LL_GPIO_PIN_7;
+    // Phase A - High
+    GPIO_InitStruct.Pin = PHASE_A_GPIO_HIGH;
     GPIO_InitStruct.Mode = LL_GPIO_MODE_ALTERNATE;
     GPIO_InitStruct.Speed = LL_GPIO_SPEED_FREQ_LOW;
     GPIO_InitStruct.OutputType = LL_GPIO_OUTPUT_PUSHPULL;
     GPIO_InitStruct.Pull = LL_GPIO_PULL_NO;
-    GPIO_InitStruct.Alternate = LL_GPIO_AF_6;
-    LL_GPIO_Init(GPIOA, &GPIO_InitStruct);
-
-    GPIO_InitStruct.Pin = LL_GPIO_PIN_0;
+    GPIO_InitStruct.Alternate = LL_GPIO_AF_2;
+    LL_GPIO_Init(PHASE_A_GPIO_PORT_HIGH, &GPIO_InitStruct);
+    // Phase B - Low
+    GPIO_InitStruct.Pin = PHASE_B_GPIO_LOW;
     GPIO_InitStruct.Mode = LL_GPIO_MODE_ALTERNATE;
     GPIO_InitStruct.Speed = LL_GPIO_SPEED_FREQ_LOW;
     GPIO_InitStruct.OutputType = LL_GPIO_OUTPUT_PUSHPULL;
     GPIO_InitStruct.Pull = LL_GPIO_PULL_NO;
-    GPIO_InitStruct.Alternate = LL_GPIO_AF_6;
-    LL_GPIO_Init(GPIOB, &GPIO_InitStruct);
-
-    GPIO_InitStruct.Pin = LL_GPIO_PIN_8;
+    GPIO_InitStruct.Alternate = LL_GPIO_AF_2;
+    LL_GPIO_Init(PHASE_B_GPIO_PORT_LOW, &GPIO_InitStruct);
+    // Phase B - High
+    GPIO_InitStruct.Pin = PHASE_B_GPIO_HIGH;
     GPIO_InitStruct.Mode = LL_GPIO_MODE_ALTERNATE;
     GPIO_InitStruct.Speed = LL_GPIO_SPEED_FREQ_LOW;
     GPIO_InitStruct.OutputType = LL_GPIO_OUTPUT_PUSHPULL;
     GPIO_InitStruct.Pull = LL_GPIO_PULL_NO;
-    GPIO_InitStruct.Alternate = LL_GPIO_AF_6;
-    LL_GPIO_Init(GPIOA, &GPIO_InitStruct);
-
-    GPIO_InitStruct.Pin = LL_GPIO_PIN_9;
+    GPIO_InitStruct.Alternate = LL_GPIO_AF_2;
+    LL_GPIO_Init(PHASE_B_GPIO_PORT_HIGH, &GPIO_InitStruct);
+    // Phase C - Low
+    GPIO_InitStruct.Pin = PHASE_C_GPIO_LOW;
     GPIO_InitStruct.Mode = LL_GPIO_MODE_ALTERNATE;
     GPIO_InitStruct.Speed = LL_GPIO_SPEED_FREQ_LOW;
     GPIO_InitStruct.OutputType = LL_GPIO_OUTPUT_PUSHPULL;
     GPIO_InitStruct.Pull = LL_GPIO_PULL_NO;
-    GPIO_InitStruct.Alternate = LL_GPIO_AF_6;
-    LL_GPIO_Init(GPIOA, &GPIO_InitStruct);
-
-    GPIO_InitStruct.Pin = LL_GPIO_PIN_10;
+    GPIO_InitStruct.Alternate = LL_GPIO_AF_2;
+    LL_GPIO_Init(PHASE_C_GPIO_PORT_LOW, &GPIO_InitStruct);
+    // Phase C - High
+    GPIO_InitStruct.Pin = PHASE_C_GPIO_HIGH;
     GPIO_InitStruct.Mode = LL_GPIO_MODE_ALTERNATE;
     GPIO_InitStruct.Speed = LL_GPIO_SPEED_FREQ_LOW;
     GPIO_InitStruct.OutputType = LL_GPIO_OUTPUT_PUSHPULL;
     GPIO_InitStruct.Pull = LL_GPIO_PULL_NO;
-    GPIO_InitStruct.Alternate = LL_GPIO_AF_6;
-    LL_GPIO_Init(GPIOA, &GPIO_InitStruct);
+    GPIO_InitStruct.Alternate = LL_GPIO_AF_2;
+    LL_GPIO_Init(PHASE_C_GPIO_PORT_HIGH, &GPIO_InitStruct);
 }
 
 void MX_TIM2_Init(void)
@@ -423,9 +426,10 @@ void MX_TIM6_Init(void)
 void MX_GPIO_Init(void)
 {
     /* GPIO Ports Clock Enable */
-    LL_AHB2_GRP1_EnableClock(LL_AHB2_GRP1_PERIPH_GPIOF);
     LL_AHB2_GRP1_EnableClock(LL_AHB2_GRP1_PERIPH_GPIOA);
     LL_AHB2_GRP1_EnableClock(LL_AHB2_GRP1_PERIPH_GPIOB);
+    LL_AHB2_GRP1_EnableClock(LL_AHB2_GRP1_PERIPH_GPIOE);
+    LL_AHB2_GRP1_EnableClock(LL_AHB2_GRP1_PERIPH_GPIOF);
 }
 
 void setPWMCompare1(uint16_t compareone) { TIM1->CCR1 = compareone; }
@@ -438,6 +442,32 @@ void resetInputCaptureTimer()
 {
     IC_TIMER_REGISTER->PSC = 0;
     IC_TIMER_REGISTER->CNT = 0;
+}
+
+void wakeGateDrive(void) {
+  LL_GPIO_InitTypeDef GPIO_InitStruct = { 0 };
+
+  GPIO_InitStruct.Pin = LL_GPIO_PIN_7;
+  GPIO_InitStruct.Mode = LL_GPIO_MODE_OUTPUT;
+  GPIO_InitStruct.Speed = LL_GPIO_SPEED_FREQ_LOW;
+  GPIO_InitStruct.OutputType = LL_GPIO_OUTPUT_PUSHPULL;
+  GPIO_InitStruct.Pull = LL_GPIO_PULL_NO;
+  GPIO_InitStruct.Alternate = 0;
+  LL_GPIO_Init(GPIOE, &GPIO_InitStruct);
+
+  LL_GPIO_TogglePin(GPIOE, GPIO_InitStruct.Pin);
+}
+
+void debugLED(void) {
+  LL_GPIO_InitTypeDef GPIO_InitStruct = { 0 };
+
+  GPIO_InitStruct.Pin = LL_GPIO_PIN_5;
+  GPIO_InitStruct.Mode = LL_GPIO_MODE_OUTPUT;
+  GPIO_InitStruct.Speed = LL_GPIO_SPEED_FREQ_LOW;
+  GPIO_InitStruct.OutputType = LL_GPIO_OUTPUT_OPENDRAIN;
+  GPIO_InitStruct.Pull = LL_GPIO_PULL_UP;
+  GPIO_InitStruct.Alternate = 0;
+  LL_GPIO_Init(GPIOB, &GPIO_InitStruct);
 }
 
 void enableCorePeripherals()
@@ -495,4 +525,8 @@ void enableCorePeripherals()
     NVIC_SetPriority(EXTI15_10_IRQn, 2);
     NVIC_EnableIRQ(EXTI15_10_IRQn);
     EXTI->IMR1 |= (1 << 15);
+#ifdef USE_STSPIN32G4
+    wakeGateDrive();
+#endif
+  debugLED();
 }

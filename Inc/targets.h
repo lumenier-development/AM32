@@ -2012,6 +2012,18 @@
 #define SIXTY_FOUR_KB_MEMORY
 #endif
 
+#ifdef LUMENIER_8S_4IN1_G071
+#define FILE_NAME "LUMENIER_8S_4IN1_G071"
+#define FIRMWARE_NAME "4-1 G071"
+#define DEAD_TIME 25
+#define MILLIVOLT_PER_AMP 24
+#define CURRENT_OFFSET 0
+#define TARGET_VOLTAGE_DIVIDER 130
+#define HARDWARE_GROUP_G0_A
+#define USE_SERIAL_TELEMETRY
+#define SIXTY_FOUR_KB_MEMORY
+#endif
+
 /********************************** F031 Targets
  * ***********************************/
 

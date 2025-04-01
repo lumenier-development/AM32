@@ -226,6 +226,7 @@ an settings option)
 #include "peripherals.h"
 #include "phaseouts.h"
 #include "serial_telemetry.h"
+#include "kiss_telemetry.h"
 #include "signal.h"
 #include "sounds.h"
 #include "targets.h"
@@ -762,7 +763,7 @@ uint16_t getSmoothedCurrent()
 void getBemfState()
 {
     uint8_t current_state = 0;
-#ifdef MCU_F031
+#if defined(MCU_F031) || defined(MCU_G031)
     if (step == 1 || step == 4) {
         current_state = PHASE_C_EXTI_PORT->IDR & PHASE_C_EXTI_PIN;
     }
@@ -827,7 +828,7 @@ void commutate()
     bemfcounter = 0;
     zcfound = 0;
     commutation_intervals[step - 1] = commutation_interval; // just used to calulate average
-    e_com_time = ((commutation_intervals[0] + commutation_intervals[1] + commutation_intervals[2] + commutation_intervals[3] + commutation_intervals[4] + commutation_intervals[5]) + 4) >> 1; // COMMUTATION INTERVAL IS 0.5US INCREMENTS
+    
 #ifdef USE_PULSE_OUT
 		if(rising){
 			GPIOB->scr = GPIO_PINS_8;
@@ -871,7 +872,7 @@ void interruptRoutine()
         }
     }
         for (int i = 0; i < filter_level; i++) {
-#ifdef MCU_F031
+#if defined(MCU_F031) || defined(MCU_G031)
             if (((current_GPIO_PORT->IDR & current_GPIO_PIN) == !(rising))) {
 #else
             if (getCompOutputLevel() == rising) {
@@ -1271,9 +1272,12 @@ void tenKhzRoutine()
         }
     }
 
-    if (eepromBuffer.telementry_on_interval) {
+    if (eepromBuffer.telemetry_on_interval) {
         telem_ms_count++;
-        if (telem_ms_count > telemetry_interval_ms * 20) {
+        if (telem_ms_count > ((telemetry_interval_ms - 1 + eepromBuffer.telemetry_on_interval) * 20)) {
+            // telemetry_on_interval = 1 is a boolean, but it can also be 2 or more to indicate an identifier
+            // by making the interval just slightly different with an unique identifier, we can guarantee that many ESCs can communicate on just one signal
+            // there will be some collisions but not as many as if two ESCs always tried to talk at once.
             send_telemetry = 1;
             telem_ms_count = 0;
         }
@@ -1510,8 +1514,8 @@ void zcfoundroutine()
     bad_count = 0;
 
     zero_crosses++;
-#ifdef NO_POLLING_START     // changes to interrupt mode after 30 zero crosses, does not re-enter
-       if (zero_crosses > 30) {
+#ifdef NO_POLLING_START     // changes to interrupt mode after 2 zero crosses, does not re-enter
+       if (zero_crosses > 2) {
             old_routine = 0;
             enableCompInterrupts(); // enable interrupt
         }
@@ -1683,7 +1687,10 @@ int main(void)
     GPIOF->BRR = LL_GPIO_PIN_7; // out of standby mode
     GPIOA->BRR = LL_GPIO_PIN_11;
 #endif
-
+#ifdef MCU_G031
+    GPIOA->BRR = LL_GPIO_PIN_11;
+    GPIOA->BSRR = LL_GPIO_PIN_12;    // Pa12 attached to enable on dev board
+#endif
 #ifdef USE_LED_STRIP
     send_LED_RGB(125, 0, 0);
 #endif
@@ -1764,13 +1771,15 @@ int main(void)
     setInputPullUp();
 #endif
 
-#ifdef USE_INVERTED_HIGH
-  min_startup_duty = min_startup_duty + 200;
-  minimum_duty_cycle = minimum_duty_cycle + 100;
-  startup_max_duty_cycle = startup_max_duty_cycle + 200;
+#ifdef USE_STARTUP_BOOST
+  min_startup_duty = min_startup_duty + 200 + ((eepromBuffer.pwm_frequency * 100)/24);
+  minimum_duty_cycle = minimum_duty_cycle + 50 + ((eepromBuffer.pwm_frequency * 50 )/24);
+  startup_max_duty_cycle = startup_max_duty_cycle + 400;
 #endif
 
     while (1) {
+
+e_com_time = ((commutation_intervals[0] + commutation_intervals[1] + commutation_intervals[2] + commutation_intervals[3] + commutation_intervals[4] + commutation_intervals[5]) + 4) >> 1; // COMMUTATION INTERVAL IS 0.5US INCREMENTS
 #if defined(FIXED_DUTY_MODE) || defined(FIXED_SPEED_MODE)
         setInput();
 #endif
@@ -1790,9 +1799,20 @@ if(zero_crosses < 5){
 }
         RELOAD_WATCHDOG_COUNTER();
 
-        if (eepromBuffer.variable_pwm) {
+        if (eepromBuffer.variable_pwm == 1) {      // uses range defined by pwm frequency setting
             tim1_arr = map(commutation_interval, 96, 200, TIMER1_MAX_ARR / 2,
                 TIMER1_MAX_ARR);
+        }
+        if (eepromBuffer.variable_pwm == 2) {      // uses automatic range   
+          if(average_interval < 250 && average_interval > 100){
+            tim1_arr = average_interval * (CPU_FREQUENCY_MHZ/9);
+          }
+          if(average_interval < 100 && average_interval > 0){
+            tim1_arr = 100 * (CPU_FREQUENCY_MHZ/9);
+         }
+          if((average_interval >= 250) || (average_interval == 0)){
+              tim1_arr = 250 * (CPU_FREQUENCY_MHZ/9);
+          } 
         }
         if (signaltimeout > (LOOP_FREQUENCY_HZ >> 1)) { // half second timeout when armed;
             if (armed) {
@@ -1904,7 +1924,7 @@ if(zero_crosses < 5){
             last_average_interval = average_interval;
         }
 
-#ifndef NEED_INPUT_READY
+#if !defined(MCU_G031) && !defined(NEED_INPUT_READY)
         if (dshot_telemetry && (commutation_interval > DSHOT_PRIORITY_THRESHOLD)) {
              NVIC_SetPriority(IC_DMA_IRQ_NAME, 0);
              NVIC_SetPriority(COM_TIMER_IRQ, 1);
@@ -1924,7 +1944,7 @@ if(zero_crosses < 5){
 #endif
         } else if(send_esc_info_flag ) {
            makeInfoPacket();
-           send_telem_DMA(48);
+           send_telem_DMA(49);
            send_esc_info_flag = 0;
         }
         adc_counter++;

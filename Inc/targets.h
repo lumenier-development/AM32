@@ -683,6 +683,17 @@
 #define VOLTAGE_ADC_CHANNEL ADC_CHANNEL_6
 #define VOLTAGE_ADC_PIN GPIO_PINS_6
 #endif
+
+#ifdef AVIARA_AIO_F421
+#define FIRMWARE_NAME "AVIARA_AIO"
+#define FILE_NAME "AVIARA_AIO_F421"
+#define DEAD_TIME 75
+#define HARDWARE_GROUP_AT_540
+#define HARDWARE_GROUP_AT_E
+#define USE_SERIAL_TELEMETRY
+#define USE_PA14_TELEMETRY
+#define PA6_NTC_ONLY
+#endif
 /****************************************Generic********************************************/
 
 #ifdef AT32PB4_054_F421

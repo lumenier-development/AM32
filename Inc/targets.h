@@ -482,6 +482,13 @@
 #define DEAD_TIME 40
 #define HARDWARE_GROUP_GD_A
 #define USE_SERIAL_TELEMETRY
+#define USE_RGB_LED
+#define RED_PORT    GPIOB
+#define RED_PIN     GPIO_PIN_3
+#define GREEN_PORT  GPIOA
+#define GREEN_PIN   GPIO_PIN_15
+#define BLUE_PORT   GPIOB
+#define BLUE_PIN    GPIO_PIN_5
 #endif
 
 /*********************************************************************AT32F421
@@ -1605,7 +1612,7 @@
 #define DEAD_TIME 45
 #define HARDWARE_GROUP_F0_B
 #define USE_SERIAL_TELEMETRY
-#define USE_RGB_LED
+//#define USE_RGB_LED
 #endif
 
 #ifdef OCDRC_F051
@@ -1614,7 +1621,7 @@
 #define DEAD_TIME 45
 #define HARDWARE_GROUP_F0_B
 #define USE_SERIAL_TELEMETRY
-#define USE_RGB_LED
+//#define USE_RGB_LED
 #endif
 
 #ifdef MP6531_F051
@@ -1825,7 +1832,7 @@
 #define CURRENT_OFFSET 0
 #define TARGET_VOLTAGE_DIVIDER 210
 #define USE_SERIAL_TELEMETRY
-#define USE_RGB_LED
+//#define USE_RGB_LED
 #endif
 
 #ifdef AM32REF_F051

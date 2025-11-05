@@ -2582,6 +2582,18 @@
 #define SIXTY_FOUR_KB_MEMORY
 #endif
 
+#ifdef LMNR_SIEGE_100A8S_SINGLE_G071
+#define FILE_NAME "LMNR_SIEGE_100A8S_SINGLE_G071"
+#define FIRMWARE_NAME "LSS_100A8S"
+#define DEAD_TIME 25
+#define MILLIVOLT_PER_AMP 24
+#define CURRENT_OFFSET 0
+#define TARGET_VOLTAGE_DIVIDER 130
+#define HARDWARE_GROUP_G0_A
+#define USE_SERIAL_TELEMETRY
+#define SIXTY_FOUR_KB_MEMORY
+#endif
+
 /********************************** F031 Targets
  * ***********************************/
 

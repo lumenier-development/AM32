@@ -6,15 +6,13 @@
 
 #ifdef USE_ADC
 
-#ifdef PA6_NTC_ONLY
-uint16_t ADCDataDMA[1];
-#else
+
 #if defined(USE_ADC_INPUT) || defined(USE_NTC)
 uint16_t ADCDataDMA[5];
 #else
 uint16_t ADCDataDMA[4];
 #endif
-#endif
+
 
 extern uint16_t ADC_raw_temp;
 extern uint16_t ADC_raw_volts;
@@ -24,9 +22,6 @@ extern uint16_t ADC_raw_ntc;
 
 void ADC_DMA_Callback()
 { // read dma buffer and set extern variables
-#ifdef PA6_NTC_ONLY
-    ADC_raw_temp = ADCDataDMA[0];
-#else
 #ifdef USE_ADC_INPUT
     ADC_raw_temp = ADCDataDMA[3];
     ADC_raw_volts = ADCDataDMA[1] / 2;
@@ -39,11 +34,10 @@ void ADC_DMA_Callback()
     ADC_raw_volts = ADCDataDMA[0];
     ADC_raw_current = ADCDataDMA[1];
   #else
-     ADC_raw_temp = ADCDataDMA[3];
+    ADC_raw_temp = ADCDataDMA[3];
     ADC_raw_volts = ADCDataDMA[0];
     ADC_raw_current = ADCDataDMA[1];
   #endif
-#endif
 #endif
 }
 
@@ -90,7 +84,7 @@ void ADC_Init(void)
 
     adc_base_default_para_init(&adc_base_struct);
     adc_base_struct.sequence_mode = TRUE;
-    adc_base_struct.repeat_mode = TRUE;
+    adc_base_struct.repeat_mode = FALSE;
     adc_base_struct.data_align = ADC_RIGHT_ALIGNMENT;
 #ifdef USE_NTC
     adc_base_struct.ordinary_channel_length = 5;

@@ -26,9 +26,18 @@ jobs:
       matrix:
         os: [ubuntu-latest, windows-latest]
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
         with:
           submodules: 'recursive'
+
+      - name: Install Windows SITL toolchain
+        if: runner.os == 'Windows'
+        uses: cygwin/cygwin-install-action@v4
+        with:
+          packages: gcc-core make
+          # Keep the board build on Git Bash/native Make. The SITL build
+          # script selects Cygwin explicitly when make reaches that target.
+          add-to-path: false
 
       - name: Build CI
         shell: bash
@@ -42,7 +51,7 @@ jobs:
           fi
 
       - name: Archive build
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: AM32-binaries-${{ matrix.os }}
           path: |
@@ -58,7 +67,7 @@ jobs:
 
       - name: Upload release assets
         if: startsWith(github.ref, 'refs/tags/') && matrix.os == 'ubuntu-latest'
-        uses: softprops/action-gh-release@v2
+        uses: softprops/action-gh-release@v3
         with:
           files: ${{ env.HEX_FILES }}
         env:
